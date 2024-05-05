@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@angular/cdk": "^17.2.2",
+    "@angular/material": "^17.2.2",
+    "@ckeditor/ckeditor5-angular": "^7.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^41.2.0",
+    "bootstrap": "^5.3.3"
+  }
+}
