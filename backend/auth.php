@@ -1,4 +1,5 @@
 <?php
+    //COUCOU
     // Démarrer ou restaurer une session
     session_start(['cookie_samesite' => 'Lax']);
     require_once('mysqlConnect.php');
