@@ -2,7 +2,11 @@
 
 require_once 'mysqlConnect.php';
 
+<<<<<<< HEAD
 class organisateur {
+=======
+class courses {
+>>>>>>> 7971643181352f486ab036b53bb5f8e1c4a31632
     public static function getUsernameOrga(){
         global $connexion;
 
@@ -14,6 +18,7 @@ class organisateur {
         $resultats = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $resultats;
     }
+<<<<<<< HEAD
 
     public static function getNomPrenomOrga($user_login){
         global $connexion;
@@ -27,5 +32,7 @@ class organisateur {
         return $resultats;
     }
 
+=======
+>>>>>>> 7971643181352f486ab036b53bb5f8e1c4a31632
 }
 ?>
