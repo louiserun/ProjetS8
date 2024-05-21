@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+  }
+
+  .main-content {
+    margin-left: 225px; // Ajustez cette valeur selon la largeur de votre navbar
+    padding: 16px; // Facultatif, pour ajouter un peu d'espace autour du contenu principal
+    width: calc(100% - 250px); // S'assure que le contenu principal prend toute la largeur restante
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .table-container {
+    width: 100%;
+  }
+  
+  table.mat-elevation-z8 {
+    width: 100%;
+  }

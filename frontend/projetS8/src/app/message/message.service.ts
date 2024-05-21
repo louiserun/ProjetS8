@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface PhpData {
   status: string;
-  data: {
-    reason?: string;
-  };
+  data: any;
 }
 
 @Injectable({

@@ -1,2 +1,64 @@
 <app-navbar></app-navbar>
-<p>accueil works!</p>
+
+<div class="main-content">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+ 
+    <!-- Column -->
+    <ng-container matColumnDef="nom_evenement">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell *matCellDef="let evenements"> 
+        <a>
+          {{evenements?.nom_evenement}}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lieu">
+      <th mat-header-cell *matHeaderCellDef> Lieu </th>
+      <td mat-cell *matCellDef="let evenements"> 
+        <a>
+          {{evenements?.lieu}}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date_debut">
+        <th mat-header-cell *matHeaderCellDef> date de début </th>
+        <td mat-cell *matCellDef="let evenements"> 
+          <a>
+            {{evenements?.date_debut}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_fin">
+        <th mat-header-cell *matHeaderCellDef> date de fin </th>
+        <td mat-cell *matCellDef="let evenements"> 
+          <a>
+            {{evenements?.date_fin}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="heure_debut">
+        <th mat-header-cell *matHeaderCellDef> heure de début </th>
+        <td mat-cell *matCellDef="let evenements"> 
+          <a>
+            {{evenements?.heure_debut}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="heure_fin">
+        <th mat-header-cell *matHeaderCellDef> heure de fin </th>
+        <td mat-cell *matCellDef="let evenements"> 
+          <a>
+            {{evenements?.heure_fin}}
+          </a>
+        </td>
+      </ng-container>
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let cours; columns: displayedColumns;" style="position:relative"></tr>
+</table>
+</div>
