@@ -1,64 +1,46 @@
-<app-navbar></app-navbar>
+<div class="container">
+  <app-navbar class="bg-light"></app-navbar>
+  <div class="content">
+    <ng-container *ngFor="let projet of projets">
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Afficher toujours le nom du projet -->
+          <h2 class="card-title">{{ projet.nom_projet }}</h2>
+          <!-- Afficher la description, la date de début et la date de fin uniquement si l'ID du projet n'est pas 0 -->
+          <ng-container *ngIf="projet.id_projet !== 0">
+            <p class="card-text">Description: {{ projet.description }}</p>
+            <p class="card-text">Date de début: {{ projet.date_debut }}</p>
+            <p class="card-text">Date de fin: {{ projet.date_fin }}</p>
+          </ng-container>
 
-<div class="main-content">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
- 
-    <!-- Column -->
-    <ng-container matColumnDef="nom_evenement">
-      <th mat-header-cell *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let evenements"> 
-        <a>
-          {{evenements?.nom_evenement}}
-        </a>
-      </td>
+          <!-- Afficher toujours les événements -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Date début</th>
+                <th scope="col">Date fin</th>
+                <th scope="col">Heure début</th>
+                <th scope="col">Heure fin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let evenement of projet.evenements">
+                <td>{{ evenement.nom_evenement }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.date_debut }}</td>
+                <td>{{ evenement.date_fin }}</td>
+                <td>{{ evenement.heure_debut }}</td>
+                <td>{{ evenement.heure_fin }}</td>
+                <td>
+                  <button class="btn btn-primary custom-button">Générer le QRcode</button> <!-- Bouton ajouté -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </ng-container>
-
-    <ng-container matColumnDef="lieu">
-      <th mat-header-cell *matHeaderCellDef> Lieu </th>
-      <td mat-cell *matCellDef="let evenements"> 
-        <a>
-          {{evenements?.lieu}}
-        </a>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="date_debut">
-        <th mat-header-cell *matHeaderCellDef> date de début </th>
-        <td mat-cell *matCellDef="let evenements"> 
-          <a>
-            {{evenements?.date_debut}}
-          </a>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="date_fin">
-        <th mat-header-cell *matHeaderCellDef> date de fin </th>
-        <td mat-cell *matCellDef="let evenements"> 
-          <a>
-            {{evenements?.date_fin}}
-          </a>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="heure_debut">
-        <th mat-header-cell *matHeaderCellDef> heure de début </th>
-        <td mat-cell *matCellDef="let evenements"> 
-          <a>
-            {{evenements?.heure_debut}}
-          </a>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="heure_fin">
-        <th mat-header-cell *matHeaderCellDef> heure de fin </th>
-        <td mat-cell *matCellDef="let evenements"> 
-          <a>
-            {{evenements?.heure_fin}}
-          </a>
-        </td>
-      </ng-container>
-   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let cours; columns: displayedColumns;" style="position:relative"></tr>
-</table>
+  </div>
 </div>
