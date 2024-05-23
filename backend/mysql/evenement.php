@@ -18,5 +18,18 @@ class evenement {
         return $resultats;
     }
 
+    public static function getEvenementsProjet($id_projet){
+        global $connexion;
+
+        $query = "SELECT * FROM evenement e
+        WHERE e.id_projet = :id_projet";
+
+        $statement = $connexion->prepare($query);
+        $statement->bindParam(':id_projet', $id_projet, PDO::PARAM_STR);
+        $statement->execute();
+        $resultats = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
+    }
+
 }
 ?>
