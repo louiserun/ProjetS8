@@ -21,7 +21,7 @@ export class GenererQrcodeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
+    // this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
   }
 
   ngOnInit() {

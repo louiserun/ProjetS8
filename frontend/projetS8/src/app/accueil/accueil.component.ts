@@ -56,7 +56,7 @@ export class AccueilComponent implements OnInit {
   projetsPasses: Projet[] = [];
 
   constructor(private messageService: MessageService) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
+    // this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
   }
 
   ngOnInit() {
