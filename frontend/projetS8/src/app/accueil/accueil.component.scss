@@ -33,6 +33,10 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.button-spacing {
+  margin-right: 20px; /* Vous pouvez ajuster la valeur de la marge selon vos besoins */
+}
+
 .card:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
@@ -50,4 +54,12 @@
 .card-text {
   margin-bottom: 10px;
   color: #666;
+}
+
+.page-title {
+  color: #293749; /* Couleur du texte */
+  font-size: 30px; /* Taille de la police */
+  text-align: center; /* Alignement du texte */
+  margin-top: 10px;
+  margin-bottom: 30px;
 }

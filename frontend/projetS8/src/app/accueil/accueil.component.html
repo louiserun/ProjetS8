@@ -1,6 +1,7 @@
 <div class="container">
   <app-navbar class="bg-light"></app-navbar>
   <div class="content">
+    <h1 [ngClass]="{ 'page-title': true }">{{ showUpcoming ? 'Projets et évènements à venir' : 'Projets et évènements passés' }}</h1> <!-- Titre dynamique -->
     <ng-container *ngFor="let projet of projets">
       <div class="card mb-4">
         <div class="card-body">
@@ -34,7 +35,8 @@
                 <td>{{ evenement.heure_debut }}</td>
                 <td>{{ evenement.heure_fin }}</td>
                 <td>
-                  <button class="btn btn-primary custom-button">Générer le QRcode</button> <!-- Bouton ajouté -->
+                  <button *ngIf="showUpcoming" class="btn btn-primary custom-button button-spacing" [routerLink]="['/generate-qrcode', evenement?.id_evenement]">Générer le QRcode</button> <!-- Bouton ajouté -->
+                  <button class="btn btn-primary custom-button">Feuille de présence</button>
                 </td>
               </tr>
             </tbody>
@@ -42,5 +44,7 @@
         </div>
       </div>
     </ng-container>
+    <button *ngIf="showUpcoming" class="btn btn-primary custom-button" (click)="toggleView()">Projets et évènements Passés</button>
+    <button *ngIf="!showUpcoming" class="btn btn-primary custom-button" (click)="toggleView()">Projets et évènements à venir</button>
   </div>
 </div>

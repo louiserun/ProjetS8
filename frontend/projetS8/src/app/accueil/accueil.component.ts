@@ -3,7 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MessageService, PhpData } from '../message/message.service';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-
+import { RouterLink } from '@angular/router';
 
 
 interface Projet {
@@ -45,19 +45,25 @@ export class CustomTimeFormatPipe implements PipeTransform {
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [NavbarComponent, MatTableModule, CommonModule],
+  imports: [NavbarComponent, MatTableModule, CommonModule, RouterLink],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss',
   providers: [MessageService]
 })
 export class AccueilComponent implements OnInit {
   projets: Projet[] = [];
+  showUpcoming: boolean = true;
+  projetsPasses: Projet[] = [];
 
   constructor(private messageService: MessageService) {
     this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
   }
 
   ngOnInit() {
+    this.loadProjets();
+  }
+
+  loadProjets() {
     const url = "getEvenementsProjet";
     const data = {};
     // Envoie d'un message pour obtenir les projets et leurs événements associés
@@ -98,6 +104,50 @@ export class AccueilComponent implements OnInit {
       console.error('Erreur lors de la récupération des projets:', error);
     });
   }
-  
+
+  loadPastProjectsAndEvents() {
+    const url = "getEvenementsProjet";
+    const data = {};
+    this.messageService.sendMessage(url, data).subscribe((response: PhpData) => {
+      const data = response.data;
+      if (response.status === 'ok') {
+        if (data && Array.isArray(data)) {
+          const currentDate = new Date();
+          const projetsPasses = data.filter((projet: Projet) => {
+            if (projet.id_projet === 0) {
+              projet.evenements = projet.evenements.filter((evenement: Evenement) => new Date(evenement.date_fin) <= currentDate);
+              return false;
+            } else {
+              return projet.evenements.some((evenement: Evenement) => new Date(evenement.date_fin) <= currentDate);
+            }
+          });
+
+          const projetsIDZero = data.filter((projet: Projet) => projet.id_projet === 0);
+          projetsIDZero.forEach((projet: Projet) => {
+            projet.evenements = projet.evenements.filter((evenement: Evenement) => new Date(evenement.date_fin) <= currentDate);
+            if (projet.evenements.length > 0) {
+              projetsPasses.push(projet);
+            }
+          });
+
+          this.projets = projetsPasses;
+        }
+        console.log('Projets Passés:', this.projets);
+      } else {
+        console.error('Erreur lors de la récupération des projets:', response);
+      }
+    }, (error) => {
+      console.error('Erreur lors de la récupération des projets:', error);
+    });
+  }
+
+  toggleView() {
+    this.showUpcoming = !this.showUpcoming;
+    if (this.showUpcoming) {
+      this.loadProjets();
+    } else {
+      this.loadPastProjectsAndEvents();
+    }
+  }
   
   }
