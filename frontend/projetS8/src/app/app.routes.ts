@@ -13,12 +13,12 @@ export const routes: Routes = [
         children:[
             {path: 'accueil', component : AccueilComponent},
             {path: 'crea_ev', component: CreaEvComponent},
-           {path : "login", component : LoginComponent },
             { path: '', redirectTo: '/accueil', pathMatch: 'full' },
-    { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
-    { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
-    { path: 'conf-pres/:id_evenement', component: ConfPresComponent },
-    { path: '', redirectTo: '/conf-pres', pathMatch: 'full' }
+            { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
+            { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
+            { path: 'conf-pres/:id_evenement', component: ConfPresComponent },
+            { path: '', redirectTo: '/conf-pres', pathMatch: 'full' }
         ]
     },
-
+    {path : "login", component : LoginComponent }
+]

@@ -55,9 +55,7 @@ export class AccueilComponent implements OnInit {
   showUpcoming: boolean = true;
   projetsPasses: Projet[] = [];
 
-  constructor(private messageService: MessageService) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
-  }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit() {
     this.loadProjets();

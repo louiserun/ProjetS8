@@ -19,9 +19,7 @@ interface Navbar{
 export class NavbarComponent implements OnInit{
   navbarData: Navbar = { nom: '', prenom: '' };
 
-  constructor(private messageService: MessageService) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
-  }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(){
     const url = "getInfoOrganisateur";

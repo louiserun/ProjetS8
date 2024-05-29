@@ -14,9 +14,7 @@ export class ConfPresComponent implements OnInit {
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute
-  ) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
-  }
+  ) {} 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id_evenement');
     this.id_evenement = id === null ? '' : id;

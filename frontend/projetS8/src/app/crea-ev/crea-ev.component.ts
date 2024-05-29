@@ -3,11 +3,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MessageService } from '../message/message.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';
 
-export interface Participant {
-  nom: string;
-  prenom: string;
-}
+
 
 @Component({
   selector: 'app-crea-ev',
@@ -26,12 +24,10 @@ export class CreaEvComponent {
   heure_fin = "";
   lieu = "";
 
-  filecontent: any;
   enableUpload = true;
-
-  participants_tab : Participant[] = [];
-
   erreur = "";
+
+  jsonData : any;
 
   constructor(private messageService: MessageService){}
 
@@ -44,36 +40,41 @@ export class CreaEvComponent {
 
 
   onFileSelected(event: any) {
-    const reader = new FileReader();
-    reader.onload = (e:any) => {
-      this.filecontent = e.target.result;
+    const target: DataTransfer = <DataTransfer>(event.target);
+
+    //Si plusieurs fichiers
+    if(target.files.length != 1){
+      this.erreur = 'Cannot use multiple files';
+      console.log(this.erreur);
+      this.enableUpload = false;
+    }
+
+    const reader: FileReader = new FileReader();
+
+    reader.onload = (e: any) => {
+      /* read workbook */
+      const arrayBuffer: ArrayBuffer = e.target.result;
+      const data = new Uint8Array(arrayBuffer);
+      const wb: XLSX.WorkBook = XLSX.read(data, { type: 'array' });
+      /* grab first sheet */
+      const wsname: string = wb.SheetNames[0];
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+      this.jsonData = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      console.log(this.jsonData);
+
+      const formData: FormData = new FormData();
+      formData.append('fileData', JSON.stringify(this.jsonData));
+
+
     };
-    reader.readAsArrayBuffer(event.target.files[0]);
-    
-    this.enableUpload = true;
-    console.log("coucou");
+    reader.readAsArrayBuffer(target.files[0]);  
+  
   }
 
   onSubmit(){
     if(this.enableUpload){
-
-      const file = {"file": this.filecontent};
-
-      console.log(file);
-      this.messageService.sendMessage("fichier", file).subscribe(
-        (response) => {
-          if(response.status == "error"){
-            console.log(response.data.reason);
-          }
-          else{
-            console.log(response.data);
-          }
-        }
-      )
-    }
-    else{
-      console.log("Enabled Upload.");
-    }
+        
   }
 }
     // if(this.nom_evenement == ""){
@@ -94,4 +95,4 @@ export class CreaEvComponent {
     // }
 
 
-
+}
