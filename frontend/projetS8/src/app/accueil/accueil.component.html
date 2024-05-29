@@ -1,2 +1,50 @@
-<app-navbar></app-navbar>
-<p>accueil works!</p>
+<div class="container">
+  <app-navbar class="bg-light"></app-navbar>
+  <div class="content">
+    <h1 [ngClass]="{ 'page-title': true }">{{ showUpcoming ? 'Projets et évènements à venir' : 'Projets et évènements passés' }}</h1> <!-- Titre dynamique -->
+    <ng-container *ngFor="let projet of projets">
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Afficher toujours le nom du projet -->
+          <h2 class="card-title">{{ projet.nom_projet }}</h2>
+          <!-- Afficher la description, la date de début et la date de fin uniquement si l'ID du projet n'est pas 0 -->
+          <ng-container *ngIf="projet.id_projet !== 0">
+            <p class="card-text">Description: {{ projet.description }}</p>
+            <p class="card-text">Date de début: {{ projet.date_debut }}</p>
+            <p class="card-text">Date de fin: {{ projet.date_fin }}</p>
+          </ng-container>
+
+          <!-- Afficher toujours les événements -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Date début</th>
+                <th scope="col">Date fin</th>
+                <th scope="col">Heure début</th>
+                <th scope="col">Heure fin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let evenement of projet.evenements">
+                <td>{{ evenement.nom_evenement }}</td>
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.date_debut }}</td>
+                <td>{{ evenement.date_fin }}</td>
+                <td>{{ evenement.heure_debut }}</td>
+                <td>{{ evenement.heure_fin }}</td>
+                <td>
+                  <button *ngIf="showUpcoming" class="btn btn-primary custom-button button-spacing" [routerLink]="['/generate-qrcode', evenement?.id_evenement]">Générer le QRcode</button> <!-- Bouton ajouté -->
+                  <button class="btn btn-primary custom-button">Feuille de présence</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+    <button *ngIf="showUpcoming" class="btn btn-primary custom-button" (click)="toggleView()">Projets et évènements Passés</button>
+    <button *ngIf="!showUpcoming" class="btn btn-primary custom-button" (click)="toggleView()">Projets et évènements à venir</button>
+  </div>
+</div>
