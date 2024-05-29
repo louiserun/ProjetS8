@@ -6,9 +6,9 @@
             <h3> {{getNom()}} {{getPrenom()}} </h3>
         </div>
         <ul>
-            <li><i class="fa fa-arrows"></i><a href="#">Accueil</a></li>
-            <li><i class="fa fa-battery-2"></i><a href="#">Evènement</a></li>
-            <li class="active"><i class="fa fa-bell"></i><a href="#">Projet</a></li>
+            <li><i class="fa fa-arrows"></i><a [routerLink]="'/accueil'">Accueil</a></li>
+            <li><i class="fa fa-battery-2"></i><a [routerLink] = "'/crea_ev'" routerLinkActive = "active">Evènement</a></li>
+            <li><i class="fa fa-bell"></i><a href="#">Projet</a></li>
             <li><i class="fa fa-bicycle"></i><a href="#">QRcode</a></li>
             <li><i class="fa fa-circle"></i><a href="#">Liste d'émargement</a></li>
         </ul>

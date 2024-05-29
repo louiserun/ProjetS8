@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+
+//CSS POUR CREATION EVENEMENT
+
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+span {
+    color: red;
+}
+
+input[type="text"],
+input[type="datetime-local"]{
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    width: 25%;
+    margin-left: 75%;
+    background-color: #0056b3;
+    color: #fff;
+    border-radius: 10px;
+    height: 30px;
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+button {
+    margin-left: 10px;
+    background-color: #022850;
+    color: #fff;
+    border-radius: 10px;
+    height: 30px;
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+#participants {
+    margin-top: 10px;
+}
+
+.participant {
+    display: flex;
+    align-items: center;
+}
+
+.participant input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.participant button {
+    margin-left: 60px;
+}
