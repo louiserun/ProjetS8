@@ -5,9 +5,7 @@ import { environment } from '../../environments/environment.development';
 
 export interface PhpData {
   status: string;
-  data: {
-    reason?: string;
-  };
+  data: any;
 }
 
 @Injectable({

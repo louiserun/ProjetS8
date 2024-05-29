@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: row; /* Aligner les éléments côte à côte */
+  padding: 20px;
+}
+
+.app-navbar {
+  width: 170px; /* Largeur fixe pour la navbar */
+  margin-right: 20px; /* Espace entre la navbar et le contenu */
+}
+
+.content {
+  flex: 1; /* Le contenu prend tout l'espace disponible */
+  margin-left: 170px;
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.custom-button {
+  background-color: #293749; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  border-radius: 5px; /* Bordures arrondies */
+  padding: 8px 10px; /* Padding interne */
+  font-size: 12px; /* Taille du texte */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-spacing {
+  margin-right: 20px; /* Vous pouvez ajuster la valeur de la marge selon vos besoins */
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.page-title {
+  color: #293749; /* Couleur du texte */
+  font-size: 30px; /* Taille de la police */
+  text-align: center; /* Alignement du texte */
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
