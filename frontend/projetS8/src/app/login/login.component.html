@@ -5,7 +5,7 @@
 <div class="wrapper">
   <div id="formContent">
     <h2>Connexion</h2>
-    <form (ngSubmit)="onLoginClick()">
+    <form (ngSubmit)="login()">
       <input type="text" id="username" name="username" placeholder="username" [(ngModel)]="username">
       <input type="text" id="password" name="password" placeholder="password" [(ngModel)]="password">
       <input type="submit" value="Log In">

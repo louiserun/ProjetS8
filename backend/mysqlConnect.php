@@ -10,5 +10,6 @@ try {
 } catch(PDOException $e) {
     // En cas d'erreur lors de la connexion
 }
-?>
+
+
 

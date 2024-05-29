@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PhpData } from '../message/message.service';
 
@@ -7,11 +8,10 @@ interface Navbar{
   prenom : string;
 }
 
-
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   providers: [MessageService]

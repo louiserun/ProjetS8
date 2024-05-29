@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MessageService, PhpData } from '../message/message.service'; // Importer le service
 import { HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -12,31 +12,32 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, HttpClientModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  providers: [MessageService]
+  styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
   username = "";
   password = "";
 
   errorMessage: string = ''; // Initialisation avec une chaîne vide
 
-  constructor(private messageService: MessageService, private router: Router) {
-    this.messageService.setBaseUrl("http://127.0.0.1:80/ProjetS8/backend");
+  url = '';
+  
+  constructor(private serviceAuth: AuthService, private router: Router) {
   }
 
-  onLoginClick() {
-    const url = "checkLogin";
+  login() {
     const data = {
       username: this.username,
       password: this.password
     };
 
     // Définir la baseUrl avant d'appeler sendMessage
-    this.messageService.sendMessage(url, data).subscribe((response: PhpData) => {
-      console.log('Response:', response);
+    this.serviceAuth.sendAuthentification(this.username, this.password).subscribe((response) => {
+      this.serviceAuth.finalizeAuthentification(response);
       if (response.status === 'error') {
-        this.errorMessage = response.data.reason || ''; // Utilisation d'une chaîne vide par défaut si response.data.reason est undefined
+        this.errorMessage = response.data.reason;
+        console.log(response.status);
       } else {
         // Authentification réussie, rediriger vers la page des cours
         this.router.navigateByUrl('/accueil');
