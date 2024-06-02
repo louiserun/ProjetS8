@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService, PhpData } from '../message/message.service';
 import QRCode from 'qrcode';
 import { ActivatedRoute, Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 @Component({
@@ -31,19 +33,22 @@ export class GenererQrcodeComponent implements OnInit {
     // Suppose eventDetailsService contient les détails de l'événement, y compris l'URL de confirmation de présence
     this.messageService.sendMessage(url, data).subscribe((response: PhpData) => {
       if (response.status === 'ok') {
-        const eventDetails = response.data; // Obtenez les détails de l'événement depuis la réponse
-        const baseUrl = window.location.origin; // Récupérer l'URL de base de l'application
-        const relativePath = '/conf-pres'; // Chemin relatif vers le composant de confirmation de présence
-        const confirmationURL = `${baseUrl}${relativePath}/${this.id_evenement}`;
-        console.log("confirmationUrl : ", confirmationURL);
-        // Générez le contenu du QR code (URL de confirmation de présence)
-        this.qrCodeURL = confirmationURL;
-        console.log("Url : ", this.qrCodeURL);
+        const token = uuidv4(); // Génère un UUID unique
+        this.messageService.sendMessage('saveToken', { id_evenement: this.id_evenement, token }).subscribe(() => {
+          const eventDetails = response.data; // Obtenez les détails de l'événement depuis la réponse
+          const baseUrl = window.location.origin; // Récupérer l'URL de base de l'application
+          const relativePath = '/conf-pres'; // Chemin relatif vers le composant de confirmation de présence
+          const confirmationURL = `${baseUrl}${relativePath}/${this.id_evenement}?token=${token}`;
+          console.log("confirmationUrl : ", confirmationURL);
+          // Générez le contenu du QR code (URL de confirmation de présence)
+          this.qrCodeURL = confirmationURL;
+          console.log("Url : ", this.qrCodeURL);
 
-        // Générez le QR code à partir de l'URL
-        QRCode.toCanvas(document.getElementById('canvas'), this.qrCodeURL, function (error) {
-          if (error) console.error(error);
-          console.log('QR Code generated successfully');
+          // Générez le QR code à partir de l'URL
+          QRCode.toCanvas(document.getElementById('canvas'), this.qrCodeURL, function (error) {
+            if (error) console.error(error);
+            console.log('QR Code generated successfully');
+          });
         });
       } else {
         console.error('Erreur lors de la récupération des détails de l\'événement:', response);

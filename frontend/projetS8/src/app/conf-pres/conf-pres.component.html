@@ -1,1 +1,22 @@
-<p>conf-pres works!</p>
+<div class="confirmation-container">
+  <h2>Confirmation de Présence</h2>
+  
+  <!-- Afficher les informations sur l'événement -->
+  <div class="event-info">
+    <p>Événement: {{ evenement?.nom_evenement }}</p>
+    <p>Date de début: {{ evenement?.date_debut | date:'dd/MM/yyyy' }}</p>
+    <p>Date de fin: {{ evenement?.date_fin | date:'dd/MM/yyyy' }}</p>
+    <p>Lieu: {{ evenement?.lieu }}</p>
+  </div>
+  
+  <!-- Formulaire de confirmation de présence -->
+  <form (ngSubmit)="confirmPresence()">
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="prenom" required>
+
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="nom" required>
+
+    <button type="submit">Confirmer</button>
+  </form>
+</div>
