@@ -26,8 +26,8 @@ export class ConfPresComponent implements OnInit {
   id_evenement: string = '';
   token: string = '';
   evenement: Evenement | undefined;
-  nom: string = '';
-  prenom: string = '';
+  nom_participant: string = '';
+  prenom_participant: string = '';
   url3: string = 'confirmPres';
 
   constructor(
@@ -61,16 +61,20 @@ export class ConfPresComponent implements OnInit {
             console.log('Token validé avec succès.');
             this.messageService.sendMessage(url2, data2).subscribe((response: PhpData) => {
               if (response.status === 'ok') {
-                console.log("ok ");
-                this.evenement = response.data;
+                const events = response.data;
+                if (Array.isArray(events) && events.length > 0) {
+                  this.evenement = events[0];  // Accéder au premier objet dans le tableau
+                  console.log(this.evenement);
+                } else {
+                  console.error('Aucun événement trouvé.');
+                }
               } else {
                 console.error('Échec de récupération des informations sur l\'événement');
               }
             },
             error => {
               console.error('Erreur lors de la récupération des informations sur l\'événement: ', error);
-            }
-          );
+            });
           } else {
             console.log('Échec de la validation du token: ', response.data.message);
             this.router.navigate(['/error']);
@@ -84,20 +88,23 @@ export class ConfPresComponent implements OnInit {
   } 
 
   confirmPresence() {
-    const data = {
+    const data1 = {
         id_evenement: this.id_evenement,
-        nom: this.nom,
-        prenom: this.prenom
+        nom_participant: this.nom_participant,
+        prenom_participant: this.prenom_participant
     };
     const url: string = 'confirmPres';
-    this.messageService.sendMessage(url, data).subscribe((response: PhpData) => {
+    this.messageService.sendMessage(url, data1).subscribe((response: PhpData) => {
         const data = response.data; 
         console.log("status:", response.status);
         if (response.status === 'ok') {
             if (data === 1) {
+
                 console.log('Confirmation de présence enregistrée avec succès.');
                 // Rediriger vers une autre page ou afficher un message de confirmation
             } else {
+              console.log(data1);
+
                 console.error('Échec de la confirmation de présence: ', response.data.message);
                 // Afficher un message d'erreur ou rediriger vers une autre page
             }

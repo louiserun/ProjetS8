@@ -19,7 +19,7 @@ export const routes: Routes = [
             { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
         ]
     },
-    {path : "login", component : LoginComponent },
+    { path : "login", component : LoginComponent },
     { path: 'conf-pres/:id_evenement', component: ConfPresComponent },
     { path: '', redirectTo: '/conf-pres', pathMatch: 'full' },
     { path: 'error', component: ErrorPageComponent }
