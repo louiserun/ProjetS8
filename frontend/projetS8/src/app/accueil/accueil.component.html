@@ -36,7 +36,7 @@
                 <td>{{ evenement.heure_fin }}</td>
                 <td>
                   <button *ngIf="showUpcoming" class="btn btn-primary custom-button button-spacing" [routerLink]="['/generate-qrcode', evenement?.id_evenement]">Générer le QRcode</button> <!-- Bouton ajouté -->
-                  <button class="btn btn-primary custom-button">Feuille de présence</button>
+                  <button class="btn btn-primary custom-button" [routerLink]="'/listem/'+ evenement.id_evenement" routerLinkActive="active">Feuille de présence</button>
                 </td>
               </tr>
             </tbody>

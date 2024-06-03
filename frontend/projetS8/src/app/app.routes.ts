@@ -6,6 +6,8 @@ import { authGuard } from './authguard/auth.guard';
 import { GenererQrcodeComponent } from './generer-qrcode/generer-qrcode.component';
 import { ConfPresComponent } from './conf-pres/conf-pres.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { CreaevreussiComponent } from './creaevreussi/creaevreussi.component';
+import { ListemargementComponent } from './listemargement/listemargement.component';
 
 export const routes: Routes = [
     {
@@ -13,14 +15,16 @@ export const routes: Routes = [
         canActivateChild:[authGuard],
         children:[
             {path: 'accueil', component : AccueilComponent},
-            {path: 'crea_ev', component: CreaEvComponent},
             { path: '', redirectTo: '/accueil', pathMatch: 'full' },
             { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
             { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
+            {path: 'crea_ev', component: CreaEvComponent},
+            {path: 'listem/:id', component: ListemargementComponent}
         ]
     },
     { path : "login", component : LoginComponent },
     { path: 'conf-pres/:id_evenement', component: ConfPresComponent },
     { path: '', redirectTo: '/conf-pres', pathMatch: 'full' },
-    { path: 'error', component: ErrorPageComponent }
+    { path: 'error', component: ErrorPageComponent },
+
 ]
