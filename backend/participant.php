@@ -17,3 +17,14 @@ function creation_participant($connexion, $nom_participant, $prenom_participant,
         return NULL;
     }
 }
+
+function recuperer_participant_pres($PDO, $id_presence){
+    $query = "SELECT * FROM participant WHERE id_presence = :id_pres";
+    $statement = $PDO->prepare($query);
+    $statement->bindParam(':id_pres', $id_presence);
+    $statement->execute();
+    
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
+}
