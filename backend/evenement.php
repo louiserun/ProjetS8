@@ -23,7 +23,7 @@ function ajout_evenement($PDO, $nomEv, $lieu, $date_deb, $date_fin, $heure_deb, 
     $statement->bindParam(":date_fin", $date_fin);
     $statement->bindParam(":heure_deb",$heure_deb);
     $statement->bindParam(":heure_fin",$heure_fin);
-    $statement->bindParam(":id_projet", $id_projet, PDO::PARAM_INT);
+    $statement->bindParam(":id_projet", $id_projet);
     $success = $statement->execute();
     if($success){
         return $PDO->lastInsertId();
