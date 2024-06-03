@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="content">
     <h1>Création d'un évènement</h1>
-    <form (ngSubmit)="onClick()">
+    <form (ngSubmit)="onSubmit()">
         <label >Nom de l'évènement<span>*</span>:</label><br>
         <input type="text" id="nom" name="nom" required [(ngModel)]="nom_evenement"><br><br>
 
@@ -14,11 +14,8 @@
         <label>Lieu<span>*</span>:</label><br>
         <input type="text" id="lieu" name="lieu" required [(ngModel)]="lieu"><br><br>
 
+        <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx">
 
-        <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-            <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx">
-            <button type="submit">Upload</button>
-        </form>
         <input type="submit" value="Créer l'évènement">
         <a href="../accueil/accueil.html"><button type="button">Retour</button></a>
         
