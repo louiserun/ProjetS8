@@ -18,8 +18,8 @@ export const routes: Routes = [
             { path: '', redirectTo: '/accueil', pathMatch: 'full' },
             { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
             { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
-            {path: 'crea_ev', component: CreaEvComponent},
-            {path: 'listem/:id', component: ListemargementComponent}
+            { path: 'crea_ev', component: CreaEvComponent},
+            { path: 'listem/:id', component: ListemargementComponent}
         ]
     },
     { path : "login", component : LoginComponent },
