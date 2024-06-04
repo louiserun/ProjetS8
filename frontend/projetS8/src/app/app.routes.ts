@@ -19,10 +19,11 @@ export const routes: Routes = [
             { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
             { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
             {path: 'crea_ev', component: CreaEvComponent},
-            {path: 'listem/:id', component: ListemargementComponent}
+            {path: 'listem/:id', component: ListemargementComponent},
+            {path: 'creaevreussi', component: CreaevreussiComponent}
         ]
     },
-    {path : "login", component : LoginComponent },
+    { path : "login", component : LoginComponent },
     { path: 'conf-pres/:id_evenement', component: ConfPresComponent },
     { path: '', redirectTo: '/conf-pres', pathMatch: 'full' },
     { path: 'error', component: ErrorPageComponent },

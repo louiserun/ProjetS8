@@ -1,0 +1,53 @@
+.confirmation-container {
+    max-width: 400px; /* Largeur maximale du conteneur */
+    margin: auto; /* Centrer le conteneur horizontalement */
+    padding: 20px;
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 10px; /* Coins arrondis */
+    background-color: #f9f9f9; /* Couleur de fond */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  .confirmation-container h2 {
+    font-size: 24px; /* Taille de la police pour le titre */
+    margin-bottom: 20px; /* Marge inférieure */
+    color: #333; /* Couleur du texte */
+  }
+  
+  .event-info p {
+    margin: 10px 0; /* Marge entre les paragraphes d'informations sur l'événement */
+    font-size: 16px; /* Taille de la police pour les informations */
+    color: #555; /* Couleur du texte */
+  }
+  
+  label {
+    display: block; /* Afficher les labels en tant que blocs pour les espacer verticalement */
+    margin-bottom: 5px; /* Marge inférieure entre les labels */
+    font-weight: bold; /* Texte en gras */
+  }
+  
+  input[type="text"] {
+    width: calc(100% - 12px); /* Largeur du champ de texte, moins la largeur de la bordure */
+    padding: 10px; /* Remplissage interne du champ de texte */
+    margin-bottom: 15px; /* Marge inférieure entre les champs de texte */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 25px; /* Remplissage interne du bouton */
+    cursor: pointer; /* Curseur pointer au survol */
+    font-size: 18px; /* Taille de la police du bouton */
+    line-height: 1; /* Centrer verticalement le texte */
+  }
+  
+  
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3; /* Couleur de fond du bouton au survol */
+  }
+  
