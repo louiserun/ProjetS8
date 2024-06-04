@@ -9,5 +9,5 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './creaevreussi.component.scss'
 })
 export class CreaevreussiComponent {
-
+  
 }

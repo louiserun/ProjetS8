@@ -19,7 +19,9 @@ export const routes: Routes = [
             { path: 'generate-qrcode/:id_evenement', component: GenererQrcodeComponent },
             { path: '', redirectTo: '/generate-qrcode', pathMatch: 'full' },
             { path: 'crea_ev', component: CreaEvComponent},
-            { path: 'listem/:id', component: ListemargementComponent}
+            { path: 'listem/:id', component: ListemargementComponent},
+            { path: 'creaevreussi', component: CreaevreussiComponent},
+
         ]
     },
     { path : "login", component : LoginComponent },

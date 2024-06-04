@@ -1,27 +1,72 @@
 # ProjetS8
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+UTILISATION DE L'APPLICATION :
 
-## Development server
+Les différentes pages:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Connexion : entrer username et password de connexion pour accéder à l'application en tant qu'organisateur.
 
-## Code scaffolding
+- Accueil : pour visualiser les évènements crées à venir/ passés de l'organisateur.
+    Deux boutons : 
+        (1)Feuille de présence: pour visualiser l'ensemble des participants et leurs statut d'emargement pour l'évènement en question.
+        (2)Generer QRcode: pour visualiser le QR code de l'évènement qui sera donné aux participant pour pouvoir émarger.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Evènement : pour création d'un évènement
+    Il faut entrer un nom d'évènement, une date de début et une date de fin, un lieu puis un fichier excel avec tous les participants (Nom et Prénom).
+    Format du fichier excel : 
+        Première ligne : colonne 1 ou 2 "Nom" et colonne 1 ou 2 "Prenom"
+        le reste des lignes contient tous les couple Nom/Prenom des participants à l'évènement.
+        -> voir le fichier test.xlsx pour exemple
 
-## Build
+- Lien du QR code : Mène vers une page pour l'émargement (pour les participants). Les participants auront alors juste besoin d'entrer leur Nom et leur Prenom pour changer dans la base de donnée dans présence, leur statut d'emargement (de 0 à 1 si emargmeent effectué avec succès).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+- Projet (non réaliser encore) : visualisation des différents projet crées et possibilité de visualiser les différents évènements appartenant à un même projet.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+BACK :
 
-## Further help
+---Requetes BDD---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+evenement.php :
+    getEvenements($user_login)
+    getEvenementsProjet($id_projet)
+    getEvenementById($id_evenement)
+    isEvenementOrga($id_evenement, $user_login)
+    evenement_exist($connexion, $nomevenement)
+    ajout_evenement($PDO, $nomEv, $lieu, $date_deb, $date_fin, $heure_deb, $heure_fin, $id_projet)
+
+organisateur.php :
+    getUsernameOrga()
+    getNomPrenomOrga($user_login)
+
+participant.php :
+    isPres($id_evenement, $nom_participant, $prenom_participant)
+    creation_participant($connexion, $nom_participant, $prenom_participant, $id_presence)
+    recuperer_participant_pres($PDO, $id_presence)
+
+presence.php :
+    function creation_presence($connexion, $statut_emargement, $heure_emargement, $id_evenement)
+    function recuperer_presences($PDO, $id_ev)
+
+projet.php :
+
+    getProjets($user_login)
+    getIdProjets($user_login)
+
+
+
+---Logique appelée par le front---
+
+pour l'authentification : checkLogin.php
+
+pour création d'évènement : creaEv.php
+
+pour confirmation de présence : confirmPres.php
+
+pour générer_qr_code : getEvenementById.php
+
+pour visualiser listeemargement : listem.php
+
+pour visualiser Projet et évènements sur la page d'accueil : getEvenementsProjet.php
